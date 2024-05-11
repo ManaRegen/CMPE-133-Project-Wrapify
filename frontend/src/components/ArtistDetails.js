@@ -10,7 +10,7 @@ function ArtistDetails() {
   useEffect(() => {
     const fetchArtist = async () => {
       try {
-        const response = await axios.get(`http://localhost:5001/artist/${id}`, {
+        const response = await axios.get(`http://localhost:5000/artist/${id}`, {
           withCredentials: true,
         });
         setArtist(response.data);

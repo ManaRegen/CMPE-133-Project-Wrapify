@@ -11,6 +11,7 @@ import WrappedPage from "./components/WrappedPage";
 import TrackDetails from "./components/TrackDetails";
 import ArtistDetails from "./components/ArtistDetails";
 import "./App.css";
+import DiscoverNewMusicPage from "./components/DiscoverNewMusicPage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/wrapped" element={<WrappedPage />} />
         <Route path="/track/:id" element={<TrackDetails />} />
         <Route path="/artist/:id" element={<ArtistDetails />} />
+        <Route path="/discover" element={<DiscoverNewMusicPage />} />
         {/* Add more routes as needed */}
       </Routes>
     </Router>

@@ -11,11 +11,11 @@ function WrappedPage() {
     const fetchData = async () => {
       try {
         const tracksResponse = await axios.get(
-          "http://localhost:5001/top-tracks",
+          "http://localhost:5000/top-tracks",
           { withCredentials: true }
         );
         const artistsResponse = await axios.get(
-          "http://localhost:5001/top-artists",
+          "http://localhost:5000/top-artists",
           { withCredentials: true }
         );
 

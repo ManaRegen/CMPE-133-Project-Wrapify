@@ -9,7 +9,7 @@ function TrackDetails() {
   useEffect(() => {
     const fetchTrack = async () => {
       try {
-        const response = await axios.get(`http://localhost:5001/track/${id}`, {
+        const response = await axios.get(`http://localhost:5000/track/${id}`, {
           withCredentials: true,
         });
         setTrack(response.data);

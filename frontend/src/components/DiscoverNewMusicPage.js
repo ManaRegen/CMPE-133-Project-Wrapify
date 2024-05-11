@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./DiscoverNewMusicPage.css"
+// import "./DiscoverNewMusicPage.css"
 
-function WrappedPage() {
+function DiscoverNewMusicPage() {
   const [recommendedTracks, setRecommendedTracks] = useState([]);
   const [recommendedArtists, setRecommendedArtists] = useState([]);
 
@@ -10,7 +10,7 @@ function WrappedPage() {
     const fetchData = async () => {
       try {
         const tracksResponse = await axios.get(
-          "http://localhost:5001/recommendations",
+          "http://localhost:5000/recommendations",
           { withCredentials: true }
         );
         
