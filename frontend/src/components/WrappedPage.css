@@ -7,11 +7,10 @@
 
 .section {
   flex: 1;
-  overflow-y: auto;
   padding: 20px;
 }
 .songs-container {
-  background-color: #808080; /* Grey background for top songs */
+  background-color: #767676; /* Grey background for top songs */
 }
 .artists-container {
   background-color: #66af7f; /* Green background for top artists */

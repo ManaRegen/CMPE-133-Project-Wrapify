@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"; // Make sure to import Link
 
 function DiscoverNewMusicPage() {
   const [recommendedTracks, setRecommendedTracks] = useState([]);
@@ -8,16 +8,18 @@ function DiscoverNewMusicPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
+        const tracksResponse = await axios.get(
           "http://localhost:5001/recommendations",
-          {
-            withCredentials: true,
-          }
+          { withCredentials: true }
         );
-        if (Array.isArray(response.data)) {
-          setRecommendedTracks(response.data);
+
+        if (Array.isArray(tracksResponse.data)) {
+          setRecommendedTracks(tracksResponse.data);
         } else {
-          console.error("Received data is not an array:", response.data);
+          console.error(
+            "Received tracks data is not an array:",
+            tracksResponse.data
+          );
         }
       } catch (error) {
         console.error("Failed to fetch data:", error);
@@ -37,7 +39,8 @@ function DiscoverNewMusicPage() {
           <ul>
             {recommendedTracks.map((track) => (
               <li key={track.id}>
-                <Link to={`/track/${track.id}`}>{track.name}</Link>
+                <Link to={`/track/${track.id}`}>{track.name}</Link>{" "}
+                {/* Link to track details */}
               </li>
             ))}
           </ul>

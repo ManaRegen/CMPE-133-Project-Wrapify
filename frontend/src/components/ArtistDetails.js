@@ -1,79 +1,52 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
-import "./ArtistDetails.css"; // Assuming this CSS is identical to TrackDetails.css for consistency
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 
-function ArtistDetails() {
-  const { id } = useParams();
-  const [artist, setArtist] = useState(null);
-  const [error, setError] = useState("");
+function DiscoverNewMusicPage() {
+  const [recommendedTracks, setRecommendedTracks] = useState([]);
 
   useEffect(() => {
-    const fetchArtist = async () => {
+    const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:5001/artist/${id}`, {
-          withCredentials: true,
-        });
-        if (response.data && response.data.images && response.data.images[0]) {
-          setArtist(response.data);
+        const tracksResponse = await axios.get(
+          "http://localhost:5001/recommendations",
+          { withCredentials: true }
+        );
+
+        if (Array.isArray(tracksResponse.data)) {
+          setRecommendedTracks(tracksResponse.data);
         } else {
-          setError("Artist image data is missing."); // Similar error handling as TrackDetails
+          console.error(
+            "Received tracks data is not an array:",
+            tracksResponse.data
+          );
         }
       } catch (error) {
-        console.error("Error fetching artist details:", error);
-        setError("Failed to load artist details.");
+        console.error("Failed to fetch data:", error);
       }
     };
 
-    fetchArtist();
-  }, [id]);
-
-  if (error) {
-    return <div className="loading">{error}</div>;
-  }
-
-  if (!artist) {
-    return <div className="loading">Loading...</div>;
-  }
-
-  const backgroundStyle = {
-    backgroundImage: `url(${artist.images[0].url})`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    filter: "blur(10px) brightness(50%)",
-    position: "fixed",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100vh",
-    zIndex: -2, // Make sure this layer stays behind all content
-  };
+    fetchData();
+  }, []);
 
   return (
-    <>
-      <div style={backgroundStyle}></div>{" "}
-      {/* Background, same as TrackDetails */}
-      <div className="track-container">
-        {" "}
-        {/* Using track-container for styling consistency */}
-        <h1 className="track-title">{artist.name}</h1>
-        <div className="image-container">
-          <img
-            src={artist.images[0].url}
-            alt={artist.name}
-            className="track-image" // Using track-image for styling consistency
-          />
-        </div>
-        <div className="track-details">
-          {" "}
-          {/* Using track-details for styling consistency */}
-          <p>Genres: {artist.genres.join(", ")}</p>
-          <p>Popularity: {artist.popularity}/100</p>
-          <p>Followers: {artist.followers.total}</p>
-        </div>
+    <div className="main-container">
+      <div className="wrapped-container">
+        <header className="wrapped-header">
+          <h1>Your Recommended Songs</h1>
+        </header>
+        <section className="recommended-songs">
+          <ul>
+            {recommendedTracks.map((track) => (
+              <li key={track.id}>
+                <Link to={`/track/${track.id}`}>{track.name}</Link>
+              </li>
+            ))}
+          </ul>
+        </section>
       </div>
-    </>
+    </div>
   );
 }
 
-export default ArtistDetails;
+export default DiscoverNewMusicPage;
