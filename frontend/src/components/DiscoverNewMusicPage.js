@@ -4,7 +4,6 @@ import axios from "axios";
 
 function DiscoverNewMusicPage() {
   const [recommendedTracks, setRecommendedTracks] = useState([]);
-  const [recommendedArtists, setRecommendedArtists] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
