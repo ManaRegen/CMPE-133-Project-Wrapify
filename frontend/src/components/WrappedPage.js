@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./WrappedPage.css"
 
-const WrappedPage = () => {
+function WrappedPage() {
   const [topTracks, setTopTracks] = useState([]);
   const [topArtists, setTopArtists] = useState([]);
 
@@ -45,21 +45,44 @@ const WrappedPage = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Top Tracks</h1>
-      <ol>
-        {topTracks.map((track) => (
-          <li key={track.id}>{track.name}</li>
-        ))}
-      </ol>
-      <h1>Top Artists</h1>
-      <ol>
-        {topArtists.map((artist) => (
-          <li key={artist.id}>{artist.name}</li>
-        ))}
-      </ol>
+    <div className="main-container"> {/* Full-page container */}
+      <div className="wrapped-container"> {/* Existing content container */}
+        <header className="wrapped-header">
+          <h1>YOUR CURRENT WRAPPED</h1>
+        </header>
+        <section className="wrapped-stats">
+          <h2>Your Top Songs</h2>
+          <ul>
+            {topTracks.map((track) => (
+              <li key={track.id}>{track.name}</li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="wrapped-stats">
+          <h2>Your Top Artists</h2>
+          <ul>
+            {topArtists.map((artist) => (
+              <li key={artist.id}>{artist.name}</li>
+            ))}
+          </ul>
+        </section>
+      </div>
+      <div className="metrics-container"> {/* New metrics container */}
+
+        <h2>Top Artists</h2>
+        <div className='artist-images'>
+          <SimpleCarousel>
+            <li><img src="https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228" alt="Artist 1" /></li>
+            <li><img src="https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228" /></li>
+            <li><img src="https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228" /></li>
+            <li><img src="https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228" /></li>
+            <li><img src="https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228" /></li>
+          </SimpleCarousel>
+        </div>
+      </div>
     </div>
   );
-};
+}
 
 export default WrappedPage;
