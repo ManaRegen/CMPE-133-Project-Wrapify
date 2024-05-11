@@ -34,6 +34,11 @@ body, html {
     border-radius: 8px;
     
   }
+
+  a {
+    text-decoration: none; /* Removes underline from all links */
+    color: #fff; /* Changes the color for all links */
+}
   
   ul {
     list-style-type: none; /* Removes default list item dots */
