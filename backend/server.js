@@ -192,7 +192,7 @@ app.get("/recommendations", async (req, res) => {
 
   try {
     // Fetch user's top tracks
-    const topTracksUrl = "https://api.spotify.com/v1/me/top/tracks?limit=10";
+    const topTracksUrl = "https://api.spotify.com/v1/me/top/tracks?limit=5";
     const topTracksResponse = await axios.get(topTracksUrl, {
       headers: {
         Authorization: `Bearer ${req.session.accessToken}`,
