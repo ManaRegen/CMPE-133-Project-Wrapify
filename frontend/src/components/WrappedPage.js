@@ -11,11 +11,11 @@ function WrappedPage() {
     const fetchData = async () => {
       try {
         const tracksResponse = await axios.get(
-          "http://localhost:5001/top-tracks?limit=20", // Adjust limit to 20
+          "http://localhost:5000/top-tracks?limit=20", // Adjust limit to 20
           { withCredentials: true }
         );
         const artistsResponse = await axios.get(
-          "http://localhost:5001/top-artists?limit=20", // Adjust limit to 20
+          "http://localhost:5000/top-artists?limit=20", // Adjust limit to 20
           { withCredentials: true }
         );
 

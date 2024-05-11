@@ -8,7 +8,7 @@ function GenrePage() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5001/genre/${genreId}/songs`)
+      .get(`http://localhost:5000/genre/${genreId}/songs`)
       .then((response) => setSongs(response.data))
       .catch((error) => console.error("Error fetching songs", error));
   }, [genreId]);

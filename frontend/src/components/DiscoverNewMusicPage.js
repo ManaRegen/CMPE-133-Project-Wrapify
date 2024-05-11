@@ -9,7 +9,7 @@ function DiscoverNewMusicPage() {
     const fetchData = async () => {
       try {
         const tracksResponse = await axios.get(
-          "http://localhost:5001/recommendations",
+          "http://localhost:5000/recommendations",
           { withCredentials: true }
         );
 

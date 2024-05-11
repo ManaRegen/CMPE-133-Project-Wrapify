@@ -6,7 +6,7 @@ const session = require("express-session");
 require("dotenv").config();
 
 const app = express();
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5000;
 
 app.use(
   cors({
@@ -138,6 +138,7 @@ app.get("/top-artists", async (req, res) => {
           headers: { Authorization: `Bearer ${req.session.accessToken}` },
         }
       );
+      console.log(response.data);
       res.json(response.data);
     } catch (error) {
       console.error("Failed to fetch artist data:", error);
