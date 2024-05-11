@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./WrappedPage.css"
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import "./WrappedPage.css";
 
 function WrappedPage() {
   const [topTracks, setTopTracks] = useState([]);
@@ -10,15 +11,14 @@ function WrappedPage() {
     const fetchData = async () => {
       try {
         const tracksResponse = await axios.get(
-          "http://localhost:5000/top-tracks",
+          "http://localhost:5001/top-tracks",
           { withCredentials: true }
         );
         const artistsResponse = await axios.get(
-          "http://localhost:5000/top-artists",
+          "http://localhost:5001/top-artists",
           { withCredentials: true }
         );
 
-        // Check if data is correctly received and is an array
         if (Array.isArray(tracksResponse.data)) {
           setTopTracks(tracksResponse.data);
         } else {
@@ -45,8 +45,8 @@ function WrappedPage() {
   }, []);
 
   return (
-    <div className="main-container"> {/* Full-page container */}
-      <div className="wrapped-container"> {/* Existing content container */}
+    <div className="main-container">
+      <div className="wrapped-container">
         <header className="wrapped-header">
           <h1>YOUR CURRENT WRAPPED</h1>
         </header>
@@ -54,26 +54,27 @@ function WrappedPage() {
           <h2>Your Top Songs</h2>
           <ul>
             {topTracks.map((track) => (
-              <li key={track.id}>{track.name}</li>
+              <li key={track.id}>
+                <Link to={`/track/${track.id}`}>{track.name}</Link>
+                {/* Make each track name a clickable link */}
+              </li>
             ))}
           </ul>
         </section>
-
         <section className="wrapped-stats">
           <h2>Your Top Artists</h2>
           <ul>
             {topArtists.map((artist) => (
-              <li key={artist.id}>{artist.name}</li>
+              <li key={artist.id}>
+                <Link to={`/artist/${artist.id}`}>{artist.name}</Link>
+                {/* Make each artist name a clickable link */}
+              </li>
             ))}
           </ul>
         </section>
       </div>
-      <div className='artist-images'>
-        <li><img src="https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228" alt="Artist 1" /></li>
-        <li><img src="https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228" /></li>
-        <li><img src="https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228" /></li>
-        <li><img src="https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228" /></li>
-        <li><img src="https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228" /></li>
+      <div className="artist-images">
+        {/* Ensure images are relevant or handle image gallery here */}
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ function WrappedPage() {
     const fetchData = async () => {
       try {
         const tracksResponse = await axios.get(
-          "http://localhost:5000/recommendations",
+          "http://localhost:5001/recommendations",
           { withCredentials: true }
         );
         
