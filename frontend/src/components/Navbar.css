@@ -1,0 +1,62 @@
+.navbar {
+    background-color: #121212; /* Close to black background */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+  }
+  
+  .navbar-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .navbar-logo {
+    /* Add your logo styling here */
+  }
+  
+  .navbar-search {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar-search input {
+    padding: 5px;
+    margin-right: 5px;
+    background: #fff;
+    border: none;
+    border-radius: 2px;
+  }
+  
+  .navbar-search button {
+    padding: 5px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .navbar-links a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0 15px;
+  }
+  
+  .navbar-auth a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0 15px;
+  }
+  
+  .signup-button {
+    background-color: #e50914; /* A bold red color for signup */
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    text-transform: uppercase;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  

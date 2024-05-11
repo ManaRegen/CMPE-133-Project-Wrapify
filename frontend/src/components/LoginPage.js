@@ -4,7 +4,7 @@ import './LoginPage.css';
 function App() {
   return (
     <div class='Login-Page'>
-      <h1>Spotify OAuth Example</h1>
+      <h1>Welcome to Wrapify</h1>
       <button onClick={() => window.location = 'http://localhost:5000/login'}>Log in with Spotify</button>
     </div>
   );
