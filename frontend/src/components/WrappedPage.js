@@ -68,18 +68,12 @@ function WrappedPage() {
           </ul>
         </section>
       </div>
-      <div className="metrics-container"> {/* New metrics container */}
-
-        <h2>Top Artists</h2>
-        <div className='artist-images'>
-          <SimpleCarousel>
-            <li><img src="https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228" alt="Artist 1" /></li>
-            <li><img src="https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228" /></li>
-            <li><img src="https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228" /></li>
-            <li><img src="https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228" /></li>
-            <li><img src="https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228" /></li>
-          </SimpleCarousel>
-        </div>
+      <div className='artist-images'>
+        <li><img src="https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228" alt="Artist 1" /></li>
+        <li><img src="https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228" /></li>
+        <li><img src="https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228" /></li>
+        <li><img src="https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228" /></li>
+        <li><img src="https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228" /></li>
       </div>
     </div>
   );

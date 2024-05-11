@@ -122,6 +122,35 @@ app.get('/top-artists', async (req, res) => {
   }
 });
 
+app.get('/recommendations', async (req, res) => { // unimplemented
+  if (!req.session.accessToken) {
+    return res.status(401).send('Unauthorized');
+  }
+
+  try {
+    const apiUrl = 'https://api.spotify.com/v1/recommendations';
+    const params = new URLSearchParams({
+      limit: 10,
+      market: 'US',
+      seed_artists: seedArtists
+    }).toString();
+
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${req.session.accessToken}`,
+        'Content-Type': 'application/json'
+      }
+    });
+
+    console.log(resp.data.items);
+    res.json(resp.data.items);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Failed to fetch user data");
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server listening on http://localhost:${PORT}`);
 });
