@@ -68,7 +68,7 @@ function ArtistDetails() {
           {" "}
           {/* Using track-details for styling consistency */}
           <p>Genres: {artist.genres.join(", ")}</p>
-          <p>Popularity: {artist.popularity}</p>
+          <p>Popularity: {artist.popularity}/100</p>
           <p>Followers: {artist.followers.total}</p>
         </div>
       </div>

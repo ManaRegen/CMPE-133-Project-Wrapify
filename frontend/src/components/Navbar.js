@@ -15,13 +15,13 @@ function Navbar({ isAuthenticated }) {
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        <img src="/path-to-your-logo.png" alt="logo" className="navbar-logo" />
+        <img src="/wrapify.jpg" alt="logo" className="navbar-logo" />
         <div className="navbar-links">
           <Link to="/discover" onClick={handleLoginRedirect}>
-            Discover Music
+            Discover Music ⛵
           </Link>
           <Link to="/wrapped" onClick={handleLoginRedirect}>
-            Wrapped
+            Wrapped 🎁
           </Link>
         </div>
         <div className="navbar-auth">

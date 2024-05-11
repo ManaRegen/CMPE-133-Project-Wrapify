@@ -1,62 +1,44 @@
 .navbar {
-    background-color: #121212; /* Close to black background */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-  }
-  
-  .navbar-container {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    justify-content: space-between;
-  }
-  
-  .navbar-logo {
-    /* Add your logo styling here */
-  }
-  
-  .navbar-search {
-    display: flex;
-    align-items: center;
-  }
-  
-  .navbar-search input {
-    padding: 5px;
-    margin-right: 5px;
-    background: #fff;
-    border: none;
-    border-radius: 2px;
-  }
-  
-  .navbar-search button {
-    padding: 5px;
-    background: transparent;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-  }
-  
-  .navbar-links a {
-    color: #fff;
-    text-decoration: none;
-    padding: 0 15px;
-  }
-  
-  .navbar-auth a {
-    color: #fff;
-    text-decoration: none;
-    padding: 0 15px;
-  }
-  
-  .signup-button {
-    background-color: #e50914; /* A bold red color for signup */
-    border: none;
-    padding: 10px 20px;
-    color: white;
-    text-transform: uppercase;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
+  background-color: #121212; /* Dark background for better visibility */
+  display: flex;
+  justify-content: space-between; /* Distributes space between elements horizontally */
+  align-items: center; /* Vertically centers the items in the navbar */
+  padding: 0 20px; /* Padding on the left and right */
+  font-size: 20px; /* Increases the font size for better readability */
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between; /* Ensures elements are spaced out between start and end */
+}
+
+.navbar-links a,
+.navbar-links .link {
+  color: #fff; /* Sets text color to white for visibility */
+  text-decoration: none; /* Removes underline from links */
+  padding: 0 15px; /* Adds padding to each side of the links */
+  cursor: pointer; /* Changes cursor to pointer to indicate clickable items */
+}
+
+.navbar-auth a,
+.navbar-auth .link {
+  color: #fff; /* Same as above, ensures text color is white */
+  text-decoration: none; /* Removes underline */
+  padding: 0 15px; /* Consistent padding as navbar-links */
+  cursor: pointer; /* Pointer cursor for better user experience */
+}
+
+/* Additional styling to handle hover effects */
+.navbar-links a:hover,
+.navbar-links .link:hover,
+.navbar-auth a:hover,
+.navbar-auth .link:hover {
+  color: #1db954; /* Changes color on hover to a Spotify green for visual feedback */
+}
+.navbar-logo {
+  height: 40px; /* Adjust the height as needed */
+  width: auto; /* Keeps the aspect ratio intact */
+  margin-right: 15px; /* Space between the logo and the next element */
+}

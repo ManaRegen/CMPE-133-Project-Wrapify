@@ -103,7 +103,7 @@ app.get("/top-tracks", async (req, res) => {
 
   try {
     const resp = await axios.get(
-      "https://api.spotify.com/v1/me/top/tracks/?limit=5",
+      "https://api.spotify.com/v1/me/top/tracks/?limit=10",
       {
         method: "GET",
         headers: {
@@ -167,7 +167,7 @@ app.get("/top-artists", async (req, res) => {
 
   try {
     const resp = await axios.get(
-      "https://api.spotify.com/v1/me/top/artists/?limit=5",
+      "https://api.spotify.com/v1/me/top/artists/?limit=10",
       {
         method: "GET",
         headers: {
@@ -184,36 +184,38 @@ app.get("/top-artists", async (req, res) => {
   }
 });
 
-app.get('/recommendations', async (req, res) => {
+app.get("/recommendations", async (req, res) => {
   if (!req.session.accessToken) {
-    return res.status(401).send('Unauthorized');
+    return res.status(401).send("Unauthorized");
   }
 
   try {
     // Fetch user's top tracks
-    const topTracksUrl = 'https://api.spotify.com/v1/me/top/tracks?limit=5';
+    const topTracksUrl = "https://api.spotify.com/v1/me/top/tracks?limit=10";
     const topTracksResponse = await axios.get(topTracksUrl, {
       headers: {
-        'Authorization': `Bearer ${req.session.accessToken}`,
-        'Content-Type': 'application/json'
-      }
+        Authorization: `Bearer ${req.session.accessToken}`,
+        "Content-Type": "application/json",
+      },
     });
 
-    const seedTracks = topTracksResponse.data.items.map(item => item.id).join(',');
+    const seedTracks = topTracksResponse.data.items
+      .map((item) => item.id)
+      .join(",");
 
     // Fetch recommendations based on top tracks
     const recommendationsUrl = `https://api.spotify.com/v1/recommendations?limit=10&market=US&seed_tracks=${seedTracks}`;
     const recommendationsResponse = await axios.get(recommendationsUrl, {
       headers: {
-        'Authorization': `Bearer ${req.session.accessToken}`,
-        'Content-Type': 'application/json'
-      }
+        Authorization: `Bearer ${req.session.accessToken}`,
+        "Content-Type": "application/json",
+      },
     });
     recTracks = recommendationsResponse.data.tracks;
-    console.log(recTracks)
+    console.log(recTracks);
     res.json(recTracks); // Send the tracks to the client
   } catch (error) {
-    console.error('Failed to fetch data:', error);
+    console.error("Failed to fetch data:", error);
     if (error.response) {
       // The request was made and the server responded with a status code
       // that falls out of the range of 2xx

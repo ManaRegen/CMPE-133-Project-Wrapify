@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { Link } from "react-router-dom";
 
 function DiscoverNewMusicPage() {
   const [recommendedTracks, setRecommendedTracks] = useState([]);
@@ -8,18 +8,16 @@ function DiscoverNewMusicPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const tracksResponse = await axios.get(
+        const response = await axios.get(
           "http://localhost:5001/recommendations",
-          { withCredentials: true }
+          {
+            withCredentials: true,
+          }
         );
-
-        if (Array.isArray(tracksResponse.data)) {
-          setRecommendedTracks(tracksResponse.data);
+        if (Array.isArray(response.data)) {
+          setRecommendedTracks(response.data);
         } else {
-          console.error(
-            "Received tracks data is not an array:",
-            tracksResponse.data
-          );
+          console.error("Received data is not an array:", response.data);
         }
       } catch (error) {
         console.error("Failed to fetch data:", error);
