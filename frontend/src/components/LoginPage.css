@@ -1,0 +1,40 @@
+.Login-Page {
+  text-align: center;
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+/* SpotifyButton.css */
+button {
+  background-color: #1DB954;
+  /* Spotify's brand green color */
+  color: white;
+  /* White text color */
+  border: none;
+  /* No border */
+  padding: 10px 20px;
+  /* Top and bottom padding of 10px, left and right padding of 20px */
+  font-size: 16px;
+  /* Font size */
+  font-weight: bold;
+  /* Bold font weight */
+  border-radius: 50px;
+  /* Fully rounded corners for pill-like shape */
+  cursor: pointer;
+  /* Cursor indicates button */
+  outline: none;
+  /* Removes the outline to keep the style clean */
+  transition: background-color 0.3s ease;
+  /* Smooth transition for hover effect */
+}
+
+button:hover {
+  background-color: #1ED760;
+  /* Slightly lighter green on hover for a nice effect */
+}

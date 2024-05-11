@@ -13,7 +13,7 @@ app.get('/login', (req, res) => {
     client_id: process.env.SPOTIFY_CLIENT_ID,
     scope: scope,
     redirect_uri: process.env.SPOTIFY_REDIRECT_URI,
-  }).toString()}`);
+  }).toString()}`); 
 });
 
 // Callback route from Spotify
@@ -35,7 +35,7 @@ app.get('/callback', async (req, res) => {
     });
     const { access_token } = response.data;
     console.log("Access Token: " + access_token);
-    res.redirect(`http://localhost:3000?access_token=${access_token}`);
+    res.redirect(`http://localhost:3000/`);
   } catch (error) {
     res.json({ error: error.message });
   }

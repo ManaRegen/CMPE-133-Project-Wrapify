@@ -1,14 +1,31 @@
-import React from 'react';
-import styles from './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import LoginPage from "./components/LoginPage";
+/*
+import WrappedPage from "./components/WrappedPage";
+import DiscoverMusicPage from "./components/DiscoverMusicPage";
+import Navbar from "./components/Navbar";
+import HomePage from "./components/HomePage";
+*/
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Welcome to Wrapify</h1>
-        <button onClick={() => window.location = 'http://localhost:5000/login'}>Log in with Spotify</button>
-      </header>
-    </div>
+    <Router>
+      {/*<Navbar />*/} {/* Navbar is placed outside of Routes so it always renders */}
+      <Routes>
+        {" "}
+        {/* Use Routes instead of Switch */}
+        {/*<Route path="/home" element={<HomePage />} />*/}
+        <Route path="/login" element={<LoginPage />} />
+
+        {/*<Route path="/wrapped" element={<WrappedPage />} />
+        <Route path="/discover" element={<DiscoverMusicPage />} />*/}
+
+        {/* Add more routes as needed */}
+      </Routes>
+    </Router>
   );
 }
 
