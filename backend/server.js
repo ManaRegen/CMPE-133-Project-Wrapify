@@ -34,6 +34,7 @@ app.get('/callback', async (req, res) => {
       },
     });
     const { access_token } = response.data;
+    console.log("Access Token: " + access_token);
     res.redirect(`http://localhost:3000?access_token=${access_token}`);
   } catch (error) {
     res.json({ error: error.message });
