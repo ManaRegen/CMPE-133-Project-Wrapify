@@ -69,7 +69,7 @@ function TrackDetails() {
           <p>Album: {track.album.name}</p>
           <p>
             Duration: {Math.floor(track.duration_ms / 60000)}:
-            {((track.duration_ms % 60000) / 1000).toFixed(0)}
+            {((track.duration_ms % 60000) / 1000).toFixed(0).padStart(2, '0')}
           </p>
           <p>Popularity: {track.popularity}/100</p>
         </div>
