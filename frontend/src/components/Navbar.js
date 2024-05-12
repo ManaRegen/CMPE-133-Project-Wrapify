@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css"; // Ensure this CSS file exists and is styled appropriately
+import wrapifyImage from './wrapify.png';
 
 function Navbar({ isAuthenticated }) {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ function Navbar({ isAuthenticated }) {
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        <img src="/wrapify.jpg" alt="logo" className="navbar-logo" />
+      <img src={wrapifyImage} alt="logo" className="navbar-logo" />
         <div className="navbar-links">
           <Link to="/discover" onClick={handleLoginRedirect}>
             Discover Music ⛵

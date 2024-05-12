@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom"; // Make sure to import Link
+import "./DiscoverNewMusicPage.css"
 
 function DiscoverNewMusicPage() {
   const [recommendedTracks, setRecommendedTracks] = useState([]);
