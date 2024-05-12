@@ -51,7 +51,7 @@ function DiscoverNewMusicPage() {
         {recommendedTracks.map(track => (
           <li key={track.id}>
             <Link to={`/tracks/${track.id}`}>
-              {track.name} by {track.artist} {/* Adjust according to the actual data structure */}
+              {track.name} by {track.artists[0].name} {/* Adjust according to the actual data structure */}
             </Link>
           </li>
         ))}
