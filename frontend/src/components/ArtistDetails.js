@@ -66,10 +66,6 @@ function ArtistDetails() {
         </div>
         <div className="artist-details">
           <p>Album: {artist.name}</p>
-          <p>
-            Duration: {Math.floor(artist.duration_ms / 60000)}:
-            {((artist.duration_ms % 60000) / 1000).toFixed(0)}
-          </p>
           <p>Popularity: {artist.popularity}/100</p>
         </div>
       </div>
