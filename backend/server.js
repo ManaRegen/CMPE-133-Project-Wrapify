@@ -186,6 +186,10 @@ app.get("/top-artists", async (req, res) => {
 });
 
 app.get("/recommendations", async (req, res) => {
+  if (req.session.recommendedTracks) {
+    return res.json(req.session.recommendedTracks);
+  }
+
   if (!req.session.accessToken) {
     return res.status(401).send("Unauthorized");
   }
@@ -214,6 +218,7 @@ app.get("/recommendations", async (req, res) => {
     });
     recTracks = recommendationsResponse.data.tracks;
     console.log(recTracks);
+    req.session.recommendedTracks = recTracks;
     res.json(recTracks); // Send the tracks to the client
   } catch (error) {
     console.error("Failed to fetch data:", error);
