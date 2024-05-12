@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./DiscoverNewMusicPage.css"
+import { Link } from "react-router-dom";
+import './DiscoverNewMusicPage.css';
 
-function WrappedPage() {
+
+function DiscoverNewMusicPage() {
   const [recommendedTracks, setRecommendedTracks] = useState([]);
-  const [recommendedArtists, setRecommendedArtists] = useState([]);
+  const [message, setMessage] = useState(''); // To display feedback
 
   useEffect(() => {
     const fetchData = async () => {
@@ -13,8 +15,7 @@ function WrappedPage() {
           "http://localhost:5000/recommendations",
           { withCredentials: true }
         );
-        
-        // Check if data is correctly received and is an array
+
         if (Array.isArray(tracksResponse.data)) {
           setRecommendedTracks(tracksResponse.data);
         } else {
@@ -23,7 +24,6 @@ function WrappedPage() {
             tracksResponse.data
           );
         }
-
       } catch (error) {
         console.error("Failed to fetch data:", error);
       }
@@ -32,20 +32,38 @@ function WrappedPage() {
     fetchData();
   }, []);
 
+  // Function to handle creating a playlist
+  const createPlaylist = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/create-playlist", {}, // Assuming no body is required
+        { withCredentials: true }
+      );
+      setMessage('Playlist created successfully!');
+    } catch (error) {
+      setMessage('Failed to create playlist. Please try again later.');
+      console.error("Error creating playlist:", error);
+    }
+  };
+
   return (
     <div className="main-container">
-        <div className="wrapped-container"> {/* Existing content container */}
-        <header className="wrapped-header">
-          <h1>Your Recommended Songs</h1>
-        </header>
-        <section className="recommended-songs">
-          <ul>
-            {recommendedTracks.map((track) => (
-              <li key={track.id}>{track.name}</li>
-            ))}
-          </ul>
-        </section>
-      </div>
+      <h1>Recommended Songs</h1>
+      <div className="grid-container">
+          {recommendedTracks.map((track, index) => (
+            <Link
+              to={`/track/${track.id}`}
+              key={track.id}
+              className="grid-item"
+            >
+              <div className="name">{track.name}</div>
+              <div className="name">By {track.artists[0].name}</div>
+              <img src={track.album.images[0].url} alt={track.name} />
+            </Link>
+          ))}
+        </div>
+      <button onClick={createPlaylist}>Create Playlist</button>
+      <p>{message}</p>
     </div>
   );
 }

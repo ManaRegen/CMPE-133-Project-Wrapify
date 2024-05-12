@@ -1,0 +1,60 @@
+body,
+html {
+  height: 0%; /* Ensure minimum height is full viewport */
+  margin: 0;
+  padding: 0;
+  background-color: #2a2a2a; /* Dark grey background */
+  color: white; /* Set text color globally to white for high contrast */
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; /* Unified font across the platform */
+  justify-content: center; /* Centers content horizontally */
+  align-items: center; /* Centers content vertically */
+}
+
+.track-container {
+  padding: 20px;
+  text-align: center;
+  max-width: 500px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.track-title {
+  font-size: 35px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8); /* Enhances visibility against background */
+}
+.track-details p {
+  font-size: 20px;
+  font-weight: bold; /* Ensures all details are bold */
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); /* Text shadow for readability */
+  margin: 10px 0;
+}
+.image-container {
+  width: 100%; /* Container width dictates image width */
+  margin-bottom: 20px;
+}
+
+.track-image {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.detail-label {
+  font-weight: normal;
+  margin-right: 5px;
+}
+
+.detail-value {
+  font-weight: bold;
+}
+
+.loading {
+  color: white;
+  font-size: 24px;
+  padding: 50px;
+  text-align: center;
+}

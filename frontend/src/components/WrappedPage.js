@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./WrappedPage.css"
+import { Link } from "react-router-dom";
+import "./WrappedPage.css";
 
 function WrappedPage() {
   const [topTracks, setTopTracks] = useState([]);
@@ -10,32 +11,16 @@ function WrappedPage() {
     const fetchData = async () => {
       try {
         const tracksResponse = await axios.get(
-          "http://localhost:5000/top-tracks",
+          "http://localhost:5000/top-tracks?limit=20", // Adjust limit to 20
           { withCredentials: true }
         );
         const artistsResponse = await axios.get(
-          "http://localhost:5000/top-artists",
+          "http://localhost:5000/top-artists?limit=20", // Adjust limit to 20
           { withCredentials: true }
         );
 
-        // Check if data is correctly received and is an array
-        if (Array.isArray(tracksResponse.data)) {
-          setTopTracks(tracksResponse.data);
-        } else {
-          console.error(
-            "Received tracks data is not an array:",
-            tracksResponse.data
-          );
-        }
-
-        if (Array.isArray(artistsResponse.data)) {
-          setTopArtists(artistsResponse.data);
-        } else {
-          console.error(
-            "Received artists data is not an array:",
-            artistsResponse.data
-          );
-        }
+        setTopTracks(tracksResponse.data);
+        setTopArtists(artistsResponse.data);
       } catch (error) {
         console.error("Failed to fetch data:", error);
       }
@@ -45,35 +30,38 @@ function WrappedPage() {
   }, []);
 
   return (
-    <div className="main-container"> {/* Full-page container */}
-      <div className="wrapped-container"> {/* Existing content container */}
-        <header className="wrapped-header">
-          <h1>YOUR CURRENT WRAPPED</h1>
-        </header>
-        <section className="wrapped-stats">
-          <h2>Your Top Songs</h2>
-          <ul>
-            {topTracks.map((track) => (
-              <li key={track.id}>{track.name}</li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="wrapped-stats">
-          <h2>Your Top Artists</h2>
-          <ul>
-            {topArtists.map((artist) => (
-              <li key={artist.id}>{artist.name}</li>
-            ))}
-          </ul>
-        </section>
+    <div className="main-container">
+      <div className="section songs-container">
+        <h2>Your Top Songs</h2>
+        <div className="grid-container">
+          {topTracks.map((track, index) => (
+            <Link
+              to={`/track/${track.id}`}
+              key={track.id}
+              className="grid-item"
+            >
+              <div className="rank">{index + 1}</div>
+              <div className="name">{track.name}</div>
+              <img src={track.album.images[0].url} alt={track.name} />
+            </Link>
+          ))}
+        </div>
       </div>
-      <div className='artist-images'>
-        <li><img src="https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228" alt="Artist 1" /></li>
-        <li><img src="https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228" /></li>
-        <li><img src="https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228" /></li>
-        <li><img src="https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228" /></li>
-        <li><img src="https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228" /></li>
+      <div className="section artists-container">
+        <h2>Your Top Artists</h2>
+        <div className="grid-container">
+          {topArtists.map((artist, index) => (
+            <Link
+              to={`/artist/${artist.id}`}
+              key={artist.id}
+              className="grid-item"
+            >
+              <div className="rank">{index + 1}</div>
+              <div className="name">{artist.name}</div>
+              <img src={artist.images[0].url} alt={artist.name} />
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );
