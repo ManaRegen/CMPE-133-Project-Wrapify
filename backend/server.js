@@ -30,7 +30,7 @@ app.use(
 
 // Redirect to Spotify login
 app.get("/login", (req, res) => {
-  const scope = "user-read-private user-read-email user-top-read";
+  const scope = "user-read-private user-read-email user-top-read playlist-modify-private";
   res.redirect(
     `https://accounts.spotify.com/authorize?${new URLSearchParams({
       response_type: "code",
@@ -230,6 +230,42 @@ app.get("/recommendations", async (req, res) => {
       // Something happened in setting up the request that triggered an Error
       res.status(500).send("Failed to fetch user data");
     }
+  }
+});
+
+app.post('/create-playlist', async (req, res) => {
+  const accessToken = req.session.accessToken; // Access token stored in session
+
+  if (!accessToken) {
+    return res.status(401).json({ error: 'Access token is missing' });
+  }
+
+  try {
+    // First fetch the user's Spotify ID using the access token
+    const meResponse = await axios.get('https://api.spotify.com/v1/me', {
+      headers: { Authorization: `Bearer ${accessToken}` }
+    });
+    const userId = meResponse.data.id;
+
+    // Use the retrieved user ID to create a playlist
+    const url = `https://api.spotify.com/v1/users/${userId}/playlists`;
+    const headers = {
+      Authorization: `Bearer ${accessToken}`,
+      'Content-Type': 'application/json'
+    };
+    const data = {
+      name: "Wrapify Recommendations", // Customize name and other options as needed
+      description: "Created by Wrapify", // Optional description
+      public: false // Whether the playlist is public or not
+    };
+
+    const response = await axios.post(url, data, { headers });
+    const id = response.id;
+    console.log(id);
+    res.json(id);
+  } catch (error) {
+    console.error('Failed to create playlist or retrieve user data:', error.response ? error.response.data : error.message);
+    res.status(500).json({ error: 'Failed to create playlist or retrieve user data' });
   }
 });
 
