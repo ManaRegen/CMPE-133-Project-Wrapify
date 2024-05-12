@@ -5,6 +5,7 @@
   align-items: center; /* Vertically centers the items in the navbar */
   padding: 0 20px; /* Padding on the left and right */
   font-size: 20px; /* Increases the font size for better readability */
+  height: 60px;
 }
 
 .navbar-container {
