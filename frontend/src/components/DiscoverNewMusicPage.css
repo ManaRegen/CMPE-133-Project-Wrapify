@@ -1,38 +1,51 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
-
-body,
-html {
-  margin: 0;
-  padding: 0;
-  font-family: "Montserrat", sans-serif;
-  background-color: #454acd; /* Lighter blue on the greyer side */
-  color: #ffffff;
-}
-
-.discover-container {
+/* Main container styling to align with Spotify's dark theme */
+.main-container {
+  background-color: #767676; /* Dark background */
+  color: #ffffff; /* Light text for contrast */
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Spotify-like font */
   padding: 20px;
-  text-align: center;
+  min-height: 100vh; /* Full view height */
 }
 
-.discover-header {
+/* Style headings to have a slightly larger and bolder look */
+h1 {
+  font-size: 24px;
+  font-weight: bold;
   margin-bottom: 20px;
 }
 
-.recommended-songs ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 auto;
-  max-width: 600px; /* Restrict the maximum width for better readability */
+/* Links styled to stand out */
+a {
+  color: #1DB954; /* Spotify's brand green for active items */
+  text-decoration: none; /* No underline */
+  transition: color 0.3s ease; /* Smooth transition for hover effect */
 }
 
-.recommended-songs li {
-  padding: 10px;
-  margin-bottom: 10px;
-  background-color: #454acd; /* Grey background for each list item */
-  border-radius: 8px;
-  transition: background-color 0.3s;
+a:hover {
+  color: #1ED760; /* Lighter green on hover */
 }
 
-.recommended-songs li:hover {
-  background-color: #454acd; /* Lighter grey on hover */
+/* Button styling */
+button {
+  background-color: #1DB954; /* Spotify green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 20px; /* Rounded corners for the button */
+  outline: none; /* Remove focus outline */
+  margin: 60px auto; /* Some space from the list to the button */
+  width: 30%;
+}
+
+button:hover {
+  background-color: #1ED760; /* Lighter green on hover */
+}
+
+/* Message text styling */
+p {
+  color: #ccc; /* Less prominent for secondary text */
+  font-size: 14px;
+  margin-top: 10px;
 }

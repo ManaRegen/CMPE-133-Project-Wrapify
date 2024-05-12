@@ -30,7 +30,7 @@ function Navbar({ isAuthenticated }) {
             <a href="/logout">Log Out</a>
           ) : (
             <>
-              <Link to="/login">Log In</Link>
+              <Link to="/logout">Log Out</Link>
             </>
           )}
         </div>

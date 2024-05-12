@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import './DiscoverNewMusicPage.css';
+
 
 function DiscoverNewMusicPage() {
   const [recommendedTracks, setRecommendedTracks] = useState([]);
@@ -47,15 +49,19 @@ function DiscoverNewMusicPage() {
   return (
     <div className="main-container">
       <h1>Recommended Songs</h1>
-      <ul>
-        {recommendedTracks.map(track => (
-          <li key={track.id}>
-            <Link to={`/tracks/${track.id}`}>
-              {track.name} by {track.artists[0].name} {/* Adjust according to the actual data structure */}
+      <div className="grid-container">
+          {recommendedTracks.map((track, index) => (
+            <Link
+              to={`/track/${track.id}`}
+              key={track.id}
+              className="grid-item"
+            >
+              <div className="name">{track.name}</div>
+              <div className="name">By {track.artists[0].name}</div>
+              <img src={track.album.images[0].url} alt={track.name} />
             </Link>
-          </li>
-        ))}
-      </ul>
+          ))}
+        </div>
       <button onClick={createPlaylist}>Create Playlist</button>
       <p>{message}</p>
     </div>

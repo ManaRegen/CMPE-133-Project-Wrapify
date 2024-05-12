@@ -296,6 +296,28 @@ app.post('/create-playlist', async (req, res) => {
   }
 });
 
+app.post('/logout', (req, res) => {
+  if (req.session) {
+    // Check if accessToken exists in session
+    if (req.session.accessToken) {
+      // Clear the accessToken
+      delete req.session.accessToken;
+
+      // After clearing the accessToken, redirect to the login page
+      res.redirect('http://localhost:3000/login');
+    } else {
+      // If no accessToken was found, still redirect to the login page
+      // Optionally, you could send a different response or handle this differently
+      res.redirect('http://localhost:3000/login');
+    }
+  } else {
+    // If there is no session initialized, handle accordingly
+    // Redirecting to login could still be appropriate
+    res.status(400).send("Session not initialized.");
+  }
+});
+
+
 app.listen(PORT, () => {
   console.log(`Server listening on http://localhost:${PORT}`);
 });
