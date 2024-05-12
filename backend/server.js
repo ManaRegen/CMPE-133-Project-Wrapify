@@ -259,13 +259,40 @@ app.post('/create-playlist', async (req, res) => {
       public: false // Whether the playlist is public or not
     };
 
-    const response = await axios.post(url, data, { headers });
-    const id = response.id;
-    console.log(id);
-    res.json(id);
+    const createPlaylistResponse = await axios.post(url, data, { headers });
+    const playlistId = createPlaylistResponse.data.id;
+    const tracks = req.session.recommendedTracks;
+    // Assuming 'tracks' is an array containing at least 10 track objects
+    const trackURIs = [];
+    for (let i = 0; i < 10; i++) {
+      trackURIs.push(tracks[i].uri);
+    }
+
+    // Convert the array of URIs to a comma-separated string
+    let uriString = trackURIs.join(',');
+
+    console.log(uriString);
+
+    const url1 = `https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=${encodeURIComponent(uriString)}`;
+
+    // Set up the headers for your request
+    const headers1 = {
+      Authorization: `Bearer ${accessToken}`,
+      'Content-Type': 'application/json'
+    };
+
+    // Make the request to add tracks to the playlist
+    axios.post(url1, {}, { headers: headers1 })
+      .then(response => {
+        console.log('Tracks added:', response.data);
+      })
+      .catch(error => {
+        console.error('Error adding tracks to playlist:', error);
+      });
+
   } catch (error) {
-    console.error('Failed to create playlist or retrieve user data:', error.response ? error.response.data : error.message);
-    res.status(500).json({ error: 'Failed to create playlist or retrieve user data' });
+    console.error('Failed to create playlist or add tracks:', error.response ? error.response.data : error.message);
+    res.status(500).json({ error: 'Failed to create playlist or add tracks' });
   }
 });
 
